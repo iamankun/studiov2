@@ -1,29 +1,34 @@
-import React, { useState } from 'react';
-import { X, Music, Calendar, Upload } from 'lucide-react';
-import { SubmissionFormData, ReleaseType } from '../../types';
-import { musicCategories, releaseTypeRules } from '../../data/mockData';
+import React, { useState } from "react";
+import { X, Music, Calendar, Upload } from "lucide-react";
+import { SubmissionFormData, ReleaseType } from "../../types";
+import { musicCategories, releaseTypeRules } from "../../data/mockData";
 
 interface CreateAlbumModalProps {
   onClose: () => void;
   onCreate: (formData: SubmissionFormData) => void;
 }
 
-export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModalProps) {
+export default function CreateAlbumModal({
+  onClose,
+  onCreate,
+}: CreateAlbumModalProps) {
   const [formData, setFormData] = useState<SubmissionFormData>({
-    title: '',
-    artist: '',
-    albumName: '',
-    type: 'SINGLE',
+    title: "",
+    artist: "",
+    albumName: "",
+    type: "SINGLE",
     releaseDate: new Date(),
-    mainCategory: '',
-    subCategory: '',
+    mainCategory: "",
+    subCategory: "",
   });
 
   const [coverImage, setCoverImage] = useState<File | null>(null);
-  const [coverImagePreview, setCoverImagePreview] = useState<string | null>(null);
+  const [coverImagePreview, setCoverImagePreview] = useState<string | null>(
+    null
+  );
 
   const handleInputChange = (field: keyof SubmissionFormData, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleCoverImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,14 +48,24 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
     onCreate({ ...formData, coverImage: coverImage || undefined });
   };
 
-  const releaseTypes: { value: ReleaseType; label: string; description: string }[] = [
-    { value: 'SINGLE', label: 'Single', description: '1-3 bài hát' },
-    { value: 'EP', label: 'EP', description: '4-6 bài hát' },
-    { value: 'ALBUM', label: 'Album', description: '7+ bài hát' },
-    { value: 'COMPILATION', label: 'Compilation', description: 'Tổng hợp nhiều nghệ sĩ' },
+  const releaseTypes: {
+    value: ReleaseType;
+    label: string;
+    description: string;
+  }[] = [
+    { value: "SINGLE", label: "Single", description: "1-3 bài hát" },
+    { value: "EP", label: "EP", description: "4-6 bài hát" },
+    { value: "ALBUM", label: "Album", description: "7+ bài hát" },
+    {
+      value: "COMPILATION",
+      label: "Compilation",
+      description: "Tổng hợp nhiều nghệ sĩ",
+    },
   ];
 
-  const subCategories = formData.mainCategory ? musicCategories[formData.mainCategory] || [] : [];
+  const subCategories = formData.mainCategory
+    ? musicCategories[formData.mainCategory] || []
+    : [];
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -61,7 +76,9 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
             <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
               <Music className="w-5 h-5 text-purple-600" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Tạo Album/Submission Mới</h2>
+            <h2 className="text-xl font-semibold text-gray-900">
+              Tạo Album/Submission Mới
+            </h2>
           </div>
           <button
             onClick={onClose}
@@ -72,7 +89,10 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Column */}
             <div className="space-y-4">
@@ -83,7 +103,7 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 <input
                   type="text"
                   value={formData.title}
-                  onChange={(e) => handleInputChange('title', e.target.value)}
+                  onChange={(e) => handleInputChange("title", e.target.value)}
                   placeholder="Nhập tên album hoặc track..."
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                   required
@@ -97,7 +117,7 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 <input
                   type="text"
                   value={formData.artist}
-                  onChange={(e) => handleInputChange('artist', e.target.value)}
+                  onChange={(e) => handleInputChange("artist", e.target.value)}
                   placeholder="Nhập tên nghệ sĩ..."
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                   required
@@ -111,7 +131,9 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 <input
                   type="text"
                   value={formData.albumName}
-                  onChange={(e) => handleInputChange('albumName', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("albumName", e.target.value)
+                  }
                   placeholder="Nhập tên album..."
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                 />
@@ -127,9 +149,10 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                       key={type.value}
                       className={`
                         flex flex-col p-3 border rounded-lg cursor-pointer transition-all duration-200
-                        ${formData.type === type.value 
-                          ? 'border-purple-500 bg-purple-50 text-purple-700' 
-                          : 'border-gray-300 hover:border-gray-400'
+                        ${
+                          formData.type === type.value
+                            ? "border-purple-500 bg-purple-50 text-purple-700"
+                            : "border-gray-300 hover:border-gray-400"
                         }
                       `}
                     >
@@ -137,11 +160,18 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                         type="radio"
                         value={type.value}
                         checked={formData.type === type.value}
-                        onChange={(e) => handleInputChange('type', e.target.value as ReleaseType)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "type",
+                            e.target.value as ReleaseType
+                          )
+                        }
                         className="sr-only"
                       />
                       <span className="font-medium text-sm">{type.label}</span>
-                      <span className="text-xs text-gray-600">{type.description}</span>
+                      <span className="text-xs text-gray-600">
+                        {type.description}
+                      </span>
                     </label>
                   ))}
                 </div>
@@ -177,8 +207,12 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                     <label className="block">
                       <div className="w-full aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-purple-300 transition-colors cursor-pointer">
                         <Upload className="w-8 h-8 text-gray-400 mb-2" />
-                        <span className="text-sm text-gray-600">Upload Cover</span>
-                        <span className="text-xs text-gray-500">JPG, PNG • Max 10MB</span>
+                        <span className="text-sm text-gray-600">
+                          Upload Cover
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          JPG, PNG • Max 10MB
+                        </span>
                       </div>
                       <input
                         type="file"
@@ -199,8 +233,10 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                   <Calendar className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                   <input
                     type="date"
-                    value={formData.releaseDate.toISOString().split('T')[0]}
-                    onChange={(e) => handleInputChange('releaseDate', new Date(e.target.value))}
+                    value={formData.releaseDate.toISOString().split("T")[0]}
+                    onChange={(e) =>
+                      handleInputChange("releaseDate", new Date(e.target.value))
+                    }
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                     required
                   />
@@ -214,15 +250,17 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 <select
                   value={formData.mainCategory}
                   onChange={(e) => {
-                    handleInputChange('mainCategory', e.target.value);
-                    handleInputChange('subCategory', '');
+                    handleInputChange("mainCategory", e.target.value);
+                    handleInputChange("subCategory", "");
                   }}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                   required
                 >
                   <option value="">Chọn thể loại...</option>
                   {Object.keys(musicCategories).map((category) => (
-                    <option key={category} value={category}>{category}</option>
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -233,14 +271,18 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 </label>
                 <select
                   value={formData.subCategory}
-                  onChange={(e) => handleInputChange('subCategory', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("subCategory", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                   required
                   disabled={!formData.mainCategory}
                 >
                   <option value="">Chọn thể loại phụ...</option>
                   {subCategories.map((subCategory) => (
-                    <option key={subCategory} value={subCategory}>{subCategory}</option>
+                    <option key={subCategory} value={subCategory}>
+                      {subCategory}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -254,7 +296,8 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 Yêu cầu cho {formData.type}:
               </p>
               <p className="text-sm text-blue-700">
-                Cần từ {releaseTypeRules[formData.type].min} đến {releaseTypeRules[formData.type].max} các bài hát
+                Cần từ {releaseTypeRules[formData.type].min} đến{" "}
+                {releaseTypeRules[formData.type].max} các bài hát
               </p>
             </div>
           )}
@@ -262,7 +305,7 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
 
         {/* Footer */}
         <div className="flex items-center justify-between p-6 bg-gray-50 border-t border-gray-200">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-red-600">
             Tất cả các trường có dấu * là bắt buộc
           </p>
           <div className="flex space-x-3">
@@ -274,7 +317,12 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
             </button>
             <button
               onClick={handleSubmit}
-              disabled={!formData.title || !formData.artist || !formData.mainCategory || !formData.subCategory}
+              disabled={
+                !formData.title ||
+                !formData.artist ||
+                !formData.mainCategory ||
+                !formData.subCategory
+              }
               className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
             >
               Tạo Album
