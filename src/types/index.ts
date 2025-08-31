@@ -1,5 +1,11 @@
 // User and Role Types
-export type UserRole = 'COMPOSER' | 'PRODUCER' | 'PERFORMER' | 'LABEL_MANAGER' | 'ADMINISTRATOR';
+export type UserRole =
+  | "COMPOSER"
+  | "PRODUCER"
+  | "PERFORMER"
+  | "LABEL_MANAGER"
+  | "ARTIST"
+  | "ADMINISTRATOR";
 
 export interface User {
   id: string;
@@ -13,8 +19,14 @@ export interface User {
 }
 
 // Release and Submission Types
-export type ReleaseType = 'SINGLE' | 'EP' | 'ALBUM' | 'COMPILATION';
-export type SubmissionStatus = 'DRAFT' | 'PENDING' | 'REVIEW' | 'APPROVED' | 'REJECTED' | 'PUBLISHED';
+export type ReleaseType = "SINGLE" | "EP" | "ALBUM" | "COMPILATION";
+export type SubmissionStatus =
+  | "DRAFT"
+  | "PENDING"
+  | "REVIEW"
+  | "APPROVED"
+  | "REJECTED"
+  | "PUBLISHED";
 
 export interface Submission {
   id: string;
@@ -102,7 +114,7 @@ export interface DashboardStats {
 
 export interface ActivityItem {
   id: string;
-  type: 'submission' | 'track' | 'file' | 'approval';
+  type: "submission" | "track" | "file" | "approval";
   title: string;
   description: string;
   timestamp: Date;

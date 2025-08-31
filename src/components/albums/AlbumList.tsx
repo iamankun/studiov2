@@ -1,7 +1,15 @@
-import React from 'react';
-import { Music, Edit, MoreVertical, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
-import { Submission } from '../../types';
-import { formatDistanceToNow } from '../../utils/dateUtils';
+import React from "react";
+import {
+  Music,
+  Edit,
+  MoreVertical,
+  Clock,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+} from "lucide-react";
+import { Submission } from "../../types";
+import { formatDistanceToNow } from "../../utils/dateUtils";
 
 interface AlbumListProps {
   submissions: Submission[];
@@ -10,11 +18,11 @@ interface AlbumListProps {
 export default function AlbumList({ submissions }: AlbumListProps) {
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'APPROVED':
+      case "APPROVED":
         return <CheckCircle className="w-4 h-4 text-green-600" />;
-      case 'REJECTED':
+      case "REJECTED":
         return <XCircle className="w-4 h-4 text-red-600" />;
-      case 'PENDING':
+      case "PENDING":
         return <Clock className="w-4 h-4 text-yellow-600" />;
       default:
         return <AlertCircle className="w-4 h-4 text-gray-600" />;
@@ -23,31 +31,31 @@ export default function AlbumList({ submissions }: AlbumListProps) {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'APPROVED':
-        return 'bg-green-100 text-green-800';
-      case 'REJECTED':
-        return 'bg-red-100 text-red-800';
-      case 'PENDING':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'PUBLISHED':
-        return 'bg-blue-100 text-blue-800';
+      case "APPROVED":
+        return "bg-green-100 text-green-800";
+      case "REJECTED":
+        return "bg-red-100 text-red-800";
+      case "PENDING":
+        return "bg-yellow-100 text-yellow-800";
+      case "PUBLISHED":
+        return "bg-blue-100 text-blue-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'SINGLE':
-        return 'bg-purple-100 text-purple-800';
-      case 'EP':
-        return 'bg-blue-100 text-blue-800';
-      case 'ALBUM':
-        return 'bg-green-100 text-green-800';
-      case 'COMPILATION':
-        return 'bg-orange-100 text-orange-800';
+      case "SINGLE":
+        return "bg-purple-100 text-purple-800";
+      case "EP":
+        return "bg-blue-100 text-blue-800";
+      case "ALBUM":
+        return "bg-green-100 text-green-800";
+      case "COMPILATION":
+        return "bg-orange-100 text-orange-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -61,31 +69,34 @@ export default function AlbumList({ submissions }: AlbumListProps) {
                 Album
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Artist
+                Nghệ sĩ
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Type
+                Kiểu dữ liệu
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
+                Trạng thái
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Tracks
+                Các bài hát
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Release Date
+                Phát hành
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Updated
+                Tải lên
               </th>
               <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
+                Hành động ngay
               </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {submissions.map((submission) => (
-              <tr key={submission.id} className="hover:bg-gray-50 transition-colors">
+              <tr
+                key={submission.id}
+                className="hover:bg-gray-50 transition-colors"
+              >
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0">
@@ -102,8 +113,12 @@ export default function AlbumList({ submissions }: AlbumListProps) {
                       )}
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{submission.title}</p>
-                      <p className="text-xs text-gray-500">{submission.mainCategory} • {submission.subCategory}</p>
+                      <p className="text-sm font-medium text-gray-900">
+                        {submission.title}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {submission.mainCategory} • {submission.subCategory}
+                      </p>
                     </div>
                   </div>
                 </td>
@@ -111,12 +126,20 @@ export default function AlbumList({ submissions }: AlbumListProps) {
                   {submission.artist}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(submission.type)}`}>
+                  <span
+                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(
+                      submission.type
+                    )}`}
+                  >
                     {submission.type}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className={`inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(submission.status)}`}>
+                  <div
+                    className={`inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                      submission.status
+                    )}`}
+                  >
                     {getStatusIcon(submission.status)}
                     <span>{submission.status}</span>
                   </div>
@@ -125,7 +148,7 @@ export default function AlbumList({ submissions }: AlbumListProps) {
                   {submission.tracks.length}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {submission.releaseDate.toLocaleDateString('vi-VN')}
+                  {submission.releaseDate.toLocaleDateString("vi-VN")}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {formatDistanceToNow(submission.updatedAt)}

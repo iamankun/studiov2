@@ -1,7 +1,7 @@
-import React from 'react';
-import { FileMusic, Download, MoreVertical, Play } from 'lucide-react';
-import { AudioFile } from '../../types';
-import { formatFileSize, formatDuration } from '../../utils/formatUtils';
+import React from "react";
+import { FileMusic, Download, MoreVertical, Play } from "lucide-react";
+import { AudioFile } from "../../types";
+import { formatFileSize, formatDuration } from "../../utils/formatUtils";
 
 interface FileGridProps {
   files: AudioFile[];
@@ -28,27 +28,31 @@ export default function FileGrid({ files }: FileGridProps) {
           {/* File Info */}
           <div className="p-4">
             <div className="flex items-start justify-between mb-2">
-              <h4 className="font-semibold text-gray-900 truncate flex-1">{file.name}</h4>
+              <h4 className="font-semibold text-gray-900 truncate flex-1">
+                {file.name}
+              </h4>
               <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors ml-2">
                 <MoreVertical className="w-4 h-4" />
               </button>
             </div>
-            
+
             <div className="space-y-2 text-sm text-gray-600">
               <div className="flex justify-between">
-                <span>Duration:</span>
-                <span className="font-medium">{formatDuration(file.duration)}</span>
+                <span>Thời gian:</span>
+                <span className="font-medium">
+                  {formatDuration(file.duration)}
+                </span>
               </div>
               <div className="flex justify-between">
-                <span>Format:</span>
+                <span>Định dạng:</span>
                 <span className="font-medium">{file.format}</span>
               </div>
               <div className="flex justify-between">
-                <span>Size:</span>
+                <span>Dung lượng:</span>
                 <span className="font-medium">{formatFileSize(file.size)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Sample Rate:</span>
+                <span>GHz:</span>
                 <span className="font-medium">{file.sampleRate / 1000}kHz</span>
               </div>
             </div>

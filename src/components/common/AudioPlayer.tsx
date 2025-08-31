@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, SkipBack, SkipForward } from 'lucide-react';
+import React, { useState, useRef, useEffect } from "react";
+import { Play, Pause, Volume2, SkipBack, SkipForward } from "lucide-react";
 
 interface AudioPlayerProps {
   trackUrl?: string;
@@ -8,7 +8,12 @@ interface AudioPlayerProps {
   isMinimized?: boolean;
 }
 
-export default function AudioPlayer({ trackUrl, trackName, artist, isMinimized = false }: AudioPlayerProps) {
+export default function AudioPlayer({
+  trackUrl,
+  trackName,
+  artist,
+  isMinimized = false,
+}: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -22,12 +27,12 @@ export default function AudioPlayer({ trackUrl, trackName, artist, isMinimized =
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
 
-    audio.addEventListener('timeupdate', updateTime);
-    audio.addEventListener('loadedmetadata', updateDuration);
+    audio.addEventListener("timeupdate", updateTime);
+    audio.addEventListener("loadedmetadata", updateDuration);
 
     return () => {
-      audio.removeEventListener('timeupdate', updateTime);
-      audio.removeEventListener('loadedmetadata', updateDuration);
+      audio.removeEventListener("timeupdate", updateTime);
+      audio.removeEventListener("loadedmetadata", updateDuration);
     };
   }, []);
 
@@ -64,7 +69,7 @@ export default function AudioPlayer({ trackUrl, trackName, artist, isMinimized =
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
   if (isMinimized) {
@@ -75,14 +80,22 @@ export default function AudioPlayer({ trackUrl, trackName, artist, isMinimized =
             onClick={togglePlayPause}
             className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
           >
-            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+            {isPlaying ? (
+              <Pause className="w-5 h-5" />
+            ) : (
+              <Play className="w-5 h-5 ml-0.5" />
+            )}
           </button>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">{trackName || 'Unknown Track'}</p>
-            <p className="text-xs text-gray-600 truncate">{artist || 'Unknown Artist'}</p>
+            <p className="text-sm font-medium text-gray-900 truncate">
+              {trackName || "Unknown Track"}
+            </p>
+            <p className="text-xs text-gray-600 truncate">
+              {artist || "Unknown Artist"}
+            </p>
           </div>
         </div>
-        
+
         {/* Progress Bar */}
         <div className="mt-3">
           <input
@@ -118,9 +131,11 @@ export default function AudioPlayer({ trackUrl, trackName, artist, isMinimized =
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-lg font-semibold text-gray-900 truncate">
-            {trackName || 'Select a track to play'}
+            {trackName || "Nghe thử"}
           </h3>
-          <p className="text-sm text-gray-600 truncate">{artist || 'Unknown Artist'}</p>
+          <p className="text-sm text-gray-600 truncate">
+            {artist || "Various Artist"}
+          </p>
         </div>
       </div>
 
@@ -133,7 +148,11 @@ export default function AudioPlayer({ trackUrl, trackName, artist, isMinimized =
           onClick={togglePlayPause}
           className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors"
         >
-          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-0.5" />}
+          {isPlaying ? (
+            <Pause className="w-6 h-6" />
+          ) : (
+            <Play className="w-6 h-6 ml-0.5" />
+          )}
         </button>
         <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
           <SkipForward className="w-5 h-5" />

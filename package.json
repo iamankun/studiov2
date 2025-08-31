@@ -1,8 +1,8 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "studiov2",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.2.0",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@types/node": "^24.3.0",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

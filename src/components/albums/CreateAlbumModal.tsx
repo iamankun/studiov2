@@ -254,7 +254,7 @@ export default function CreateAlbumModal({ onClose, onCreate }: CreateAlbumModal
                 Yêu cầu cho {formData.type}:
               </p>
               <p className="text-sm text-blue-700">
-                Cần từ {releaseTypeRules[formData.type].min} đến {releaseTypeRules[formData.type].max} tracks
+                Cần từ {releaseTypeRules[formData.type].min} đến {releaseTypeRules[formData.type].max} các bài hát
               </p>
             </div>
           )}

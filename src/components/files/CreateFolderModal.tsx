@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { X, Folder } from 'lucide-react';
+import React, { useState } from "react";
+import { X, Folder } from "lucide-react";
 
 interface CreateFolderModalProps {
   onClose: () => void;
   onCreate: (folderName: string) => void;
 }
 
-export default function CreateFolderModal({ onClose, onCreate }: CreateFolderModalProps) {
-  const [folderName, setFolderName] = useState('');
+export default function CreateFolderModal({
+  onClose,
+  onCreate,
+}: CreateFolderModalProps) {
+  const [folderName, setFolderName] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +24,9 @@ export default function CreateFolderModal({ onClose, onCreate }: CreateFolderMod
       <div className="bg-white rounded-xl max-w-md w-full">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Tạo Thư Mục Mới</h2>
+          <h2 className="text-xl font-semibold text-gray-900">
+            Tạo thư mục mới
+          </h2>
           <button
             onClick={onClose}
             className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
@@ -33,7 +38,10 @@ export default function CreateFolderModal({ onClose, onCreate }: CreateFolderMod
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6">
           <div className="mb-6">
-            <label htmlFor="folderName" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="folderName"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Tên thư mục
             </label>
             <div className="relative">

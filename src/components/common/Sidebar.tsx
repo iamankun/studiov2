@@ -28,7 +28,7 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
             <Music className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">MusicDash</h1>
+            <h1 className="text-xl font-bold text-gray-900">{process.env.APPNAME ?? "NONAME by APPNAME.env"}</h1>
             <p className="text-sm text-gray-500">Label Management</p>
           </div>
         </div>
