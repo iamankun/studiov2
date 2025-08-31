@@ -1,0 +1,39 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Đang lên nhạc rồi đây",
+      "command": "npm install"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "dev": {
+      "name": "Ôi giai đoạn sáng tác thật mệt nỏi",
+      "command": "npm run dev",
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
+    },
+    "build": {
+      "name": "Tiến hành lên sóng thôi",
+      "command": "npm run build",
+      "runAtStart": true
+    },
+    "lint": {
+      "name": "Kiểm tra xung đột và nhất quán giai điệu nào",
+      "command": "npm run lint",
+      "runAtStart": true
+    },
+    "preview": {
+      "name": "Bạn muốn xem trước",
+      "command": "npm run preview",
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
+    }
+  }
+}
